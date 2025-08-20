@@ -1,0 +1,19 @@
+{
+  "name": "privacypass-issuer",
+  "module": "src/main.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "bun src/main.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.1.4",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@cloudflare/privacypass-ts": "^0.7.2"
+  }
+}

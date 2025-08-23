@@ -74,7 +74,10 @@ Bun.serve({
           );
           return new Response('Global Rate limit exceeded', {
             status: 429,
-            headers: { 'Retry-After': '1' },
+            headers: {
+              'Retry-After': '1',
+              'Access-Control-Allow-Origin': '*',
+            },
           });
         }
 
@@ -90,7 +93,21 @@ Bun.serve({
         );
 
         return new Response(tokenRes.serialize(), {
-          headers: { 'Content-Type': 'application/private-token-response' },
+          headers: {
+            'Content-Type': 'application/private-token-response',
+            'Access-Control-Allow-Origin': '*',
+          },
+        });
+      },
+      OPTIONS: () => {
+        return new Response(null, {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Max-Age': '600',
+            Vary: 'Origin',
+          },
         });
       },
     },
